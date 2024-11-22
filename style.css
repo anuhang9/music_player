@@ -1,0 +1,88 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: sans-serif;
+}
+.container{
+    display: grid;
+    place-items: center;
+    min-height: 100vh;
+    background-color: #e0e0e0;
+}
+.card{
+    display: grid;
+    place-items: center;
+    height: 450px;
+    width: 300px;
+    background: #e0e0e0;
+    box-shadow: inset 2px 2px 3px #ffffff,inset -2px -2px 3px #bebebe, 2px 2px 3px #bebebe, -2px -2px 3px #ffffff;
+    padding: 20px;
+}
+.music-logo{
+    height: 100px;
+    width: 100px;
+    background: #e0e0e0;
+    box-shadow:  inset 2px 2px 3px #bebebe, inset -2px -2px 3px #ffffff;
+    border-radius: 200px;
+}
+.music-details{
+    font-style: italic;
+}
+.song-title{
+    font-weight: bold;
+}
+.timer-song{
+    font-size: 10px;
+    font-weight: bold;
+}
+.timer-range{
+    appearance: none;
+    background-color: gray;
+    height: 2px;
+    position: relative;
+    top: -3px;
+}
+.timer-range::-webkit-slider-thumb{
+    appearance: none;
+    background-color: black;
+    height: 10px;
+    width: 10px;
+    cursor: pointer;
+    border-radius: 50px;
+}
+.timer-range::-moz-range-progress{
+    background-color: red;
+}
+.button button{
+    border-style: none;
+    background-color: #e0e0e0;
+    cursor: pointer;
+    margin: 2px 5px;
+}
+.button button img{
+    height: 20px;
+    border-radius: 50px;
+}
+.button button img:hover{
+    filter: drop-shadow(0 0 5px gray);
+}
+.r-s{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    column-gap: 20px;
+    grid-template-rows: 1fr;
+    width: 260px;
+}
+.r-s button{
+    border-style: none;
+    background-color: #e0e0e0;
+    cursor: pointer;
+    align-items: start;
+}
+.r-s button img{
+    height: 20px;
+}
+.r-s button img:hover{
+    filter: drop-shadow(0 0 15px gray);
+}

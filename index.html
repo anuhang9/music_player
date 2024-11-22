@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Music Player</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div class="container">
+      <div class="card">
+        <div>
+          <div class="music-logo"></div>
+        </div>
+        <div class="music-details">
+          <p class="song-title">name</p>
+          <p class="song-artist">artist</p>
+          <p class="song-album">album</p>
+        </div>
+        <div class="song-range">
+            <span class="timer-song">0:00</span>
+            <input type="range" class="timer-range" min="0" max="100 " value="0"/>
+            <span class="timer-song">0:00</span>
+        </div>
+        <div class="button">
+          <button class="previous"><img src="previous.png" alt="" srcset=""></button>
+          <button class="play-pause"><img src="pause.png" alt="" srcset=""></button>
+          <button class="next"><img src="/next.png" alt="" srcset=""></button>
+        </div>
+        <div class="r-s">
+          <button class="suffle"><img src="suffle.png" alt="" srcset=""></button>
+          <button class="repeat"><img src="repeat.png" alt="" srcset=""></button>
+        </div>
+      </div>
+    </div>
+    <script src="script.js"></script>
+  </body>
+</html>
