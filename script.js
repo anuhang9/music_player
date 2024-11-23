@@ -40,15 +40,15 @@ let song_store = [
 ]
 
 
-function load_music(my_music){
-    song_store.find((current_song)=>{
-        if(current_song == my_music){
-            let play_song = new Audio.apply(current_song.song);
-            play_song.play();
+// function load_music(my_music){
+    song_play_pause.addEventListener('click',()=>{song_store.find((current_song)=>{
+        if(current_song.name === ""){
+            let play_song = new Audio(current_song.song);
+            play_song.play().catch(err=>{
+                console.log(err)
+            });
         }
     })
-}
-// let songs_name = song_store.map(e=>{
-//     return e.name
-// })
-// console.log(songs_name)
+})
+// }
+// load_music()

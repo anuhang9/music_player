@@ -25,6 +25,31 @@
     background: #e0e0e0;
     box-shadow:  inset 2px 2px 3px #bebebe, inset -2px -2px 3px #ffffff;
     border-radius: 200px;
+    display: flex;
+    /* place-items: center; */
+    justify-content: center;
+    align-items: center;
+}
+.song-img{
+    height: 100px;
+    border-radius: 100px;
+    border: 10px solid black;
+}
+.logo-center{
+    position: absolute;
+    height: 25px;
+    width: 25px;
+    border: 2px solid white;
+    background-color: black;
+    border-radius: 100px;
+}
+.center-of-center{
+    height: 5px;
+    width: 10px;
+    background-color: white;
+    position: absolute;
+    z-index: 2;
+    top: 8px;
 }
 .music-details{
     font-style: italic;
