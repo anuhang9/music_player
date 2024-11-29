@@ -45,56 +45,86 @@ let song_store = [
     song: "Sahara.mp3",
   },
 ];
+
+
+
+
+let currentIndex = song_store.findIndex((song) => song.name === "Bhanai");
+console.log(currentIndex)
+
+// Function to load a song
+function loadSong(index) {
+  const currentSong = song_store[index];
+  if (play_song)
+  play_song.pause(); // Pause the current song if playing
+  play_song = new Audio(currentSong.song); // Set the new song
+  song_name.innerText = currentSong.name;
+  song_artist.innerText = currentSong.artist;
+  song_album.innerText = currentSong.album;
+  song_image.src = currentSong.image;
+
+  play_song.addEventListener("loadedmetadata", () => {
+    song_time_range.max = play_song.duration;
+    song_timing_total.innerText = `${Math.floor(play_song.duration / 60)}:${Math.floor(
+      play_song.duration % 60
+    )}`;
+  });
+
+  play_song.addEventListener("timeupdate", () => {
+    song_time_range.value = play_song.currentTime;
+    const minutes = Math.floor(play_song.currentTime / 60);
+    const seconds = Math.floor(play_song.currentTime % 60);
+    song_timing_current.innerText = `${minutes}:${seconds < 10 ? "0" : ""}${seconds}`;
+  });
+}
+
+// Function to play the loaded song
+function playLoadedSong() {
+  play_song.play();
+  song_play_pause_img.src = "pause.png";
+  song_image.style.animationName = "songimg";
+  song_image.style.animationPlayState = "running";
+  is_playing = false;
+}
+
+// Initialize the first song
+loadSong(currentIndex);
+
+// Play/Pause button functionality
 song_play_pause.addEventListener("click", () => {
-  let my_song = song_store.find(
-    (current_song) => current_song.name === "Bhanai"
-  );
-
-  if (!play_song) {
-    play_song = new Audio(my_song.song);
-    play_song.addEventListener("loadedmetadata", () => {
-      song_time_range.max = play_song.duration;
-      song_timing_total.innerText = `${Math.floor(play_song.duration/60)}:${Math.floor(play_song.duration%60)}`
-    });
-
-    song_time_range.addEventListener("input", () => {
-      play_song.currentTime = song_time_range.value;
-      const current_minutes = Math.floor(play_song.currentTime / 60);
-      const current_seconds = Math.floor(play_song.currentTime % 60);
-      song_timing_current.innerText = `${current_minutes}:${
-        current_seconds < 10 ? "0" : ""
-      }${current_seconds}`;
-    });
-
-    play_song.addEventListener("timeupdate", () => {
-      song_time_range.value = play_song.currentTime;
-      let currentTime = play_song.currentTime;
-      let minutes = Math.floor(currentTime / 60);
-      let seconds = Math.floor(currentTime % 60);
-      song_timing_current.innerText = `${minutes}:${seconds < 10 ? "0" : ""}${seconds}`;
-
-      if (minutes !== i) {
-        i = minutes;
-        song_timing_current.innerText = `${i}:${Math.floor(currentTime %  60) < 10 ? ("0" + Math.floor(currentTime % 60)) : Math.floor(currentTime % 60)}`;
-      }
-    });
-  }
-  
   if (is_playing) {
-    play_song.play();
-    song_play_pause_img.src = "pause.png";
-    song_image.style.animationName = "songimg";
-    song_image.style.animationPlayState = "running";
-    is_playing = false;
-  } 
-  else{
+    playLoadedSong();
+  } else {
     play_song.pause();
     song_play_pause_img.src = "play.png";
     song_image.style.animationPlayState = "paused";
     is_playing = true;
   }
-  song_name.innerText = my_song.name;
-  song_artist.innerText = my_song.artist;
-  song_album.innerText = my_song.album;
-  song_image.src = my_song.image;
+});
+
+// Next button functionality
+song_next.addEventListener("click", () => {
+  currentIndex = (currentIndex + 1) % song_store.length; // Loop back to start if at the end
+  loadSong(currentIndex);
+  if (!is_playing) playLoadedSong();
+});
+
+// Previous button functionality
+song_previous.addEventListener("click", () => {
+  currentIndex = (currentIndex - 1 + song_store.length) % song_store.length; // Loop to end if at the start
+  loadSong(currentIndex);
+  if (!is_playing) playLoadedSong();
+});
+
+// Seek functionality
+song_time_range.addEventListener("input", () => {
+  play_song.currentTime = song_time_range.value;
+  const currentMinutes = Math.floor(play_song.currentTime / 60);
+  const currentSeconds = Math.floor(play_song.currentTime % 60);
+  song_timing_current.innerText = `${currentMinutes}:${currentSeconds < 10 ? "0" : ""}${currentSeconds}`;
+});
+
+// Repeat button functionality
+song_repeat.addEventListener("click", () => {
+  play_song.currentTime = 0;
 });
