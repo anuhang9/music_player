@@ -133,3 +133,14 @@ input:focus, button:focus{
 .r-s button img:hover{
     filter: drop-shadow(0 0 15px gray);
 }
+.library{
+    font-weight:900;
+    font-size: large;
+    background: transparent;
+    padding: 2px;
+    height: 0px;
+    border-style: none;
+    position: relative;
+    bottom: -10px;
+    cursor: pointer;
+}
